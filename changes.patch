@@ -1,0 +1,13 @@
+diff --git a/kitty/child-monitor.c b/kitty/child-monitor.c
+index 0d17994b2..6673026af 100644
+--- a/kitty/child-monitor.c
++++ b/kitty/child-monitor.c
+@@ -753,7 +753,7 @@ prepare_to_render_os_window(OSWindow *os_window, monotonic_t now, unsigned int *
+             if (is_active_window) {
+                 *active_window_id = w->id;
+                 if (collect_cursor_info(&WD.screen->cursor_render_info, w, now, os_window)) needs_render = true;
+-                WD.screen->cursor_render_info.is_focused = os_window->is_focused;
++                WD.screen->cursor_render_info.is_focused = true;
+                 set_os_window_title_from_window(w, os_window);
+                 *active_window_bg = window_bg;
+             } else {

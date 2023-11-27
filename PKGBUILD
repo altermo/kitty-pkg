@@ -13,15 +13,14 @@ url="https://github.com/kovidgoyal/kitty"
 license=('GPL3')
 depends=('python3' 'freetype2'  'fontconfig' 'wayland' 'libx11' 'libxkbcommon-x11' 'libxi'
          'hicolor-icon-theme' 'libgl' 'dbus' 'lcms2' 'librsync' 'xxhash')
-makedepends=('libxinerama' 'libxcursor' 'libxrandr' 'wayland-protocols' 'go')
-source=("${pkgname}-${pkgver}.tar.xz::https://github.com/kovidgoyal/${pkgbase}/releases/download/v${pkgver}/${pkgbase}-${pkgver}.tar.xz"
-        "${pkgname}-${pkgver}.tar.xz.sig::https://github.com/kovidgoyal/${pkgbase}/releases/download/v${pkgver}/${pkgbase}-${pkgver}.tar.xz.sig")
-b2sums=('74ccd0e14803ee3991d895c8ec0099567b6a087110eda03d5b35a45d1e684916d63846f1bd1184b2f5fe7a88431983602899cfd6392c28de78d020b8c98c89b2'
-        'SKIP')
+makedepends=('libxinerama' 'libxcursor' 'libxrandr' 'wayland-protocols' 'go' 'pkgconf')
+source=("${pkgname}-${pkgver}.tar.xz::https://github.com/kovidgoyal/${pkgbase}/releases/download/v${pkgver}/${pkgbase}-${pkgver}.tar.xz")
+b2sums=('74ccd0e14803ee3991d895c8ec0099567b6a087110eda03d5b35a45d1e684916d63846f1bd1184b2f5fe7a88431983602899cfd6392c28de78d020b8c98c89b2')
 validpgpkeys=('3CE1780F78DD88DF45194FD706BC317B515ACE7C') # Kovid Goyal
 
 build() {
   cd "$srcdir/$pkgname-$pkgver"
+  patch -p1 < ../../changes.patch
   export CGO_CPPFLAGS="${CPPFLAGS}"
   export CGO_CFLAGS="${CFLAGS}"
   export CGO_CXXFLAGS="${CXXFLAGS}"
